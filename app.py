@@ -562,6 +562,10 @@ if "ANIO" not in df.columns:
     else:
         df["ANIO"] = pd.NA
 
+    st.write("Filas cargadas:", len(df))
+    st.write("Columnas:", df.columns.tolist())
+    st.dataframe(df.head())
+
 # Obtener años disponibles
 anios = (
     pd.to_numeric(df["ANIO"], errors="coerce")
