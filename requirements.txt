@@ -1,0 +1,8 @@
+streamlit
+pandas
+openpyxl
+requests
+Pillow
+urllib3
+fastapi
+uvicorn
