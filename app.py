@@ -279,6 +279,11 @@ def cargar_master_item(ruta):
         engine="openpyxl",
     )
 
+st.write("Archivo cargado correctamente")
+st.write("Filas:", len(df))
+st.write("Columnas:", df.columns.tolist())
+st.dataframe(df.head())
+    
     # Normalizar nombres de columnas
     df.columns = (
         df.columns
