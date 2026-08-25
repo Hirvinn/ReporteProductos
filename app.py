@@ -508,12 +508,12 @@ macro_opciones = opciones_columna(df, "MACROCATEGORIA")
 categoria_opciones = opciones_columna(df, "CATEGORIA")
 subcategoria_opciones = opciones_columna(df, "SUBCATEGORIA")
 
-anios = pd.to_numeric(df["ANIO"], errors="coerce").dropna().astype(int).unique().tolist()
-anio_opciones = ["Todos"] + sorted(anios, reverse=True)
-
 st.write("Shape:", df.shape)
 st.write("Columnas:", df.columns.tolist())
 st.dataframe(df.head())
+
+anios = pd.to_numeric(df["ANIO"], errors="coerce").dropna().astype(int).unique().tolist()
+anio_opciones = ["Todos"] + sorted(anios, reverse=True)
 
 MESES = {
     "Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6,
