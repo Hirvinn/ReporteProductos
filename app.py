@@ -508,6 +508,9 @@ macro_opciones = opciones_columna(df, "MACROCATEGORIA")
 categoria_opciones = opciones_columna(df, "CATEGORIA")
 subcategoria_opciones = opciones_columna(df, "SUBCATEGORIA")
 
+st.write("Columnas disponibles:")
+st.write(df.columns.tolist())
+
 anios = pd.to_numeric(df["ANIO"], errors="coerce").dropna().astype(int).unique().tolist()
 anio_opciones = ["Todos"] + sorted(anios, reverse=True)
 
