@@ -275,14 +275,9 @@ def cargar_master_item(ruta):
 
     df = pd.read_excel(
         ruta,
-        sheet_name=HOJA_EXCEL,
+        sheet_name=MASTER_ITEM,
         engine="openpyxl",
     )
-
-st.write("Archivo cargado correctamente")
-st.write("Filas:", len(df))
-st.write("Columnas:", df.columns.tolist())
-st.dataframe(df.head())
     
     # Normalizar nombres de columnas
     df.columns = (
