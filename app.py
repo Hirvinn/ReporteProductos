@@ -184,8 +184,7 @@ st.set_page_config(
 BASE_DIR = Path(__file__).resolve().parent
 LOGO = BASE_DIR / "assets" / "logo.png"
 
-ARCHIVO_EXCEL = Path(
-    r"C:\Users\hmbelalcazars\OneDrive - CorporacionGPF - Femsa Salud\ITEM MASTER ORIGINAL - Copia.xlsx"
+ARCHIVO_EXCEL = BASE_DIR / "ITEM MASTER ORIGINAL.xlsx"
 )
 
 HOJA_EXCEL = "MASTER_ITEM"
