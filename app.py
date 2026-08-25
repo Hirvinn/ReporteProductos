@@ -548,6 +548,32 @@ macro_opciones = opciones_columna(df, "MACROCATEGORIA")
 categoria_opciones = opciones_columna(df, "CATEGORIA")
 subcategoria_opciones = opciones_columna(df, "SUBCATEGORIA")
 
+# Normalizar nombres de columnas
+df.columns = df.columns.astype(str).str.strip().str.upper()
+
+# Crear ANIO si no existe
+if "ANIO" not in df.columns:
+    if "FECHA_CREACION" in df.columns:
+        df["FECHA_CREACION"] = pd.to_datetime(
+            df["FECHA_CREACION"],
+            errors="coerce"
+        )
+        df["ANIO"] = df["FECHA_CREACION"].dt.year
+    else:
+        df["ANIO"] = pd.NA
+
+# Obtener años disponibles
+anios = (
+    pd.to_numeric(df["ANIO"], errors="coerce")
+    .dropna()
+    .astype(int)
+    .unique()
+    .tolist()
+)
+
+anios.sort(reverse=True)
+
+
 anios = pd.to_numeric(df["ANIO"], errors="coerce").dropna().astype(int).unique().tolist()
 anio_opciones = ["Todos"] + sorted(anios, reverse=True)
 
