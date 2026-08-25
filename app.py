@@ -270,28 +270,70 @@ if not VERIFY_SSL:
 # ============================================================
 
 @st.cache_data(show_spinner="Actualizando información...")
+@st.cache_data(show_spinner="Actualizando información...")
 def cargar_master_item(ruta):
+
     df = pd.read_excel(
         ruta,
         sheet_name=HOJA_EXCEL,
         engine="openpyxl",
     )
-    
-    df.columns = df.columns.astype(str).str.strip()
 
-    for col in ["COD_ITEM", "DESCRIPCION", "MACROCATEGORIA", "CATEGORIA", "SUBCATEGORIA"]:
+    # Normalizar nombres de columnas
+    df.columns = (
+        df.columns
+        .astype(str)
+        .str.strip()
+        .str.upper()
+    )
+
+    # Limpiar campos principales
+    for col in [
+        "COD_ITEM",
+        "DESCRIPCION",
+        "MACROCATEGORIA",
+        "CATEGORIA",
+        "SUBCATEGORIA"
+    ]:
         if col in df.columns:
-            df[col] = df[col].fillna("").astype(str).str.strip()
+            df[col] = (
+                df[col]
+                .fillna("")
+                .astype(str)
+                .str.strip()
+            )
 
+    # Crear campos de fecha
     if "FECHA_CREACION" in df.columns:
-        df["FECHA_CREACION"] = pd.to_datetime(df["FECHA_CREACION"], errors="coerce")
+
+        df["FECHA_CREACION"] = pd.to_datetime(
+            df["FECHA_CREACION"],
+            errors="coerce"
+        )
+
         df["ANIO"] = df["FECHA_CREACION"].dt.year
         df["MES"] = df["FECHA_CREACION"].dt.month
         df["DIA"] = df["FECHA_CREACION"].dt.day
+
     else:
-        df["ANIO"] = pd.Series(pd.NA, index=df.index, dtype="Int64")
-        df["MES"] = pd.Series(pd.NA, index=df.index, dtype="Int64")
-        df["DIA"] = pd.Series(pd.NA, index=df.index, dtype="Int64")
+
+        df["ANIO"] = pd.Series(
+            pd.NA,
+            index=df.index,
+            dtype="Int64"
+        )
+
+        df["MES"] = pd.Series(
+            pd.NA,
+            index=df.index,
+            dtype="Int64"
+        )
+
+        df["DIA"] = pd.Series(
+            pd.NA,
+            index=df.index,
+            dtype="Int64"
+        )
 
     return df
 
