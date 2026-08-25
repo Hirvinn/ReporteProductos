@@ -275,7 +275,7 @@ def cargar_master_item(ruta):
 
     df = pd.read_excel(
         ruta,
-        sheet_name=MASTER_ITEM,
+        sheet_name=Hoja1,
         engine="openpyxl",
     )
     
