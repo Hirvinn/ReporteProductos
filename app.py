@@ -186,7 +186,7 @@ LOGO = BASE_DIR / "assets" / "logo.png"
 
 ARCHIVO_EXCEL = BASE_DIR / "ITEM MASTER ORIGINAL.xlsx"
 
-HOJA_EXCEL = "MASTER_ITEM"
+HOJA_EXCEL = "Hoja1"
 
 WEBDAV_SERVER = "https://staging-na01-difarma.demandware.net"
 WEBDAV_ROOT = (
